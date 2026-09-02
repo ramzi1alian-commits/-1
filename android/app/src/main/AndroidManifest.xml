@@ -2,6 +2,8 @@
     <application
         android:allowBackup="false"
         android:fullBackupContent="false"
+        android:icon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher"
         android:label="مِرسال"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mirsal">

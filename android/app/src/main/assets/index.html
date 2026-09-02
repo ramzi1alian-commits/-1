@@ -43,11 +43,29 @@ textarea{min-height:190px;resize:vertical;padding:15px;line-height:1.8;direction
 .keyboard-note{padding:5px 12px 11px;color:#777181;font-size:10px;text-align:center}
 .sheet{position:fixed;inset:0;z-index:1200;display:none;align-items:flex-end;background:rgba(0,0,0,.6);backdrop-filter:blur(5px)}.sheet.open{display:flex}.sheet-content{width:100%;max-width:620px;margin:auto;background:#14121d;border:1px solid var(--border);border-radius:22px 22px 0 0;padding:20px}.sheet-content h3{margin:0 0 15px}.setting{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--border)}.setting small{color:var(--muted)}
 @media(max-width:650px){.app{width:94%;padding-top:15px}.security{grid-template-columns:1fr}.security-item{padding:9px 11px}.card{padding:14px;border-radius:18px}.key-area{grid-template-columns:1fr}.key-buttons{display:grid;grid-template-columns:1fr 1fr}.key-buttons .btn:first-child{grid-column:span 2}.actions{grid-template-columns:1fr}.keyboard{right:10px;bottom:82px;width:calc(100vw - 20px);max-height:70vh}.keyboard .key-row button{height:39px;font-size:12px}.keyboard-launcher{right:14px;bottom:14px}}
+:root[data-theme="light"]{--bg:#f6f4fb;--panel:#ffffff;--panel2:#f1eef8;--border:#e2dcf0;--text:#241f31;--muted:#6c6479;--accent:#7c4fe0;--accent2:#5b32b8;--success:#1c9464;--danger:#d63659;--key:#efeafa;--shadow:0 15px 40px rgba(90,60,180,.12)}
+html[data-theme="light"] body{background:radial-gradient(circle at 80% 0%,rgba(140,100,230,.10),transparent 30%),radial-gradient(circle at 0% 100%,rgba(120,80,220,.06),transparent 30%),var(--bg)}
+[data-theme="light"] textarea,[data-theme="light"] .input-wrap input{background:#fbfaff;color:var(--text);border-color:var(--border)}
+[data-theme="light"] .output{background:#fbfaff;border-color:#d9d2ec;color:#332c44}
+[data-theme="light"] .status{background:#f1eef8;color:var(--muted)}
+[data-theme="light"] .keyboard{background:#ffffff;border-color:var(--border);box-shadow:0 25px 70px rgba(90,60,180,.18)}
+[data-theme="light"] .keyboard-head{background:#f4f1fb;border-color:var(--border)}
+[data-theme="light"] .khead-btn{background:#efeafa;color:#332c44;border-color:var(--border)}
+[data-theme="light"] .keyboard-tools{border-color:var(--border)}
+[data-theme="light"] .keyboard-tools button{background:#f4f1fb;color:#544c68;border-color:var(--border)}
+[data-theme="light"] .keyboard-tools button.active{background:#e4d9fb;color:#3d2472;border-color:var(--accent)}
+[data-theme="light"] .key-row button{background:#f4f1fb;color:#332c44;border-color:#ded6ef}
+[data-theme="light"] .key-row button:active{background:#e4d9fb;border-color:var(--accent)}
+[data-theme="light"] .keyboard-note{color:#948c9f}
+[data-theme="light"] .sheet-content{background:#ffffff;border-color:var(--border)}
+[data-theme="light"] .setting{border-color:var(--border)}
+[data-theme="light"] .file-picked{background:#f8f6fc;border-color:var(--border)}
+[data-theme="light"] .strength{background:#e9e4f4}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="brand"><div class="logo">✉</div><div><h1>مِرسال</h1><p>تشفير محلي — بدون خادم</p></div></div><div class="header-actions"><button class="icon-btn" id="settingsBtn" title="الإعدادات">⚙</button></div></header>
+<header class="header"><div class="brand"><div class="logo">✉</div><div><h1>مِرسال</h1><p>تشفير محلي — بدون خادم</p></div></div><div class="header-actions"><button class="icon-btn" id="themeToggle" title="تبديل المظهر">☀️</button><button class="icon-btn" id="settingsBtn" title="الإعدادات">⚙</button></div></header>
 <section class="security"><div class="security-item"><span>✓</span><span>AES-256-GCM</span></div><div class="security-item"><span>✓</span><span>PBKDF2-SHA-256</span></div><div class="security-item"><span>✓</span><span>محلي بالكامل</span></div></section>
 
 <div class="tabs"><div class="tab active" id="tabText">📝 نص</div><div class="tab" id="tabFile">📁 ملف</div></div>
@@ -78,7 +96,7 @@ textarea{min-height:190px;resize:vertical;padding:15px;line-height:1.8;direction
 </div>
 <button class="keyboard-launcher" id="keyboardLauncher" title="فتح لوحة المفاتيح">⌨</button>
 <div class="keyboard" id="keyboard"><div class="keyboard-head" id="keyboardHead"><div class="keyboard-title"><span>⌨</span>لوحة مفاتيح مِرسال</div><div class="keyboard-head-actions"><button class="khead-btn" id="minKeyboard">−</button><button class="khead-btn" id="closeKeyboard">×</button></div></div>
-<div class="keyboard-tools"><button id="targetMessage" class="active">الرسالة</button><button id="targetPassword">المفتاح</button><button id="arabicMode" class="active">عربي</button><button id="englishMode">EN</button></div><div class="keys" id="keys"></div><div class="keyboard-note">اسحب اللوحة من الشريط العلوي لتحريكها</div></div>
+<div class="keyboard-tools"><button id="targetMessage" class="active">✎ الرسالة</button><button id="targetPassword">🔑 المفتاح</button></div><div class="keyboard-tools"><button id="arabicMode" class="active">عربي</button><button id="englishMode">EN</button><button id="symbolsMode">١٢٣</button></div><div class="keys" id="keys"></div><div class="keyboard-note">اسحب اللوحة من الشريط العلوي لتحريكها</div></div>
 <div class="sheet" id="settingsSheet"><div class="sheet-content"><div class="card-title"><h3>الإعدادات</h3><button class="icon-btn" id="closeSettings">×</button></div>
 <div class="setting"><div><b>AES-256-GCM</b><br><small>تشفير متماثل موثّق — للنصوص والملفات</small></div><span>✓</span></div>
 <div class="setting"><div><b>PBKDF2-SHA-256</b><br><small>اشتقاق المفتاح من كلمة المرور</small></div><span>✓</span></div>
@@ -99,6 +117,16 @@ const keyboard=document.getElementById("keyboard"),keysContainer=document.getEle
 const fileInput=document.getElementById("fileInput"),filePicked=document.getElementById("filePicked"),fileName=document.getElementById("fileName"),fileMeta=document.getElementById("fileMeta"),fileClear=document.getElementById("fileClear");
 const tabText=document.getElementById("tabText"),tabFile=document.getElementById("tabFile"),panelText=document.getElementById("panelText"),panelFile=document.getElementById("panelFile"),textOutputCard=document.getElementById("textOutputCard");
 let activeMode="text";
+
+const themeToggle=document.getElementById("themeToggle");
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme",t);
+  try{localStorage.setItem("mirsal-theme",t)}catch(e){}
+  themeToggle.textContent=t==="light"?"🌙":"☀️";
+  themeToggle.title=t==="light"?"التبديل إلى الوضع الداكن":"التبديل إلى الوضع النهاري";
+}
+themeToggle.onclick=()=>applyTheme(document.documentElement.getAttribute("data-theme")==="light"?"dark":"light");
+applyTheme((()=>{try{return localStorage.getItem("mirsal-theme")}catch(e){return null}})()||"dark");
 
 function setStatus(t,type=""){statusBox.textContent=t;statusBox.className="status "+type}
 function b64e(bytes){let b="";for(const x of bytes)b+=String.fromCharCode(x);return btoa(b).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
@@ -278,15 +306,20 @@ document.getElementById("copyKey").onclick=()=>copyText(password.value,"تم ن�
 document.getElementById("copyOutput").onclick=()=>copyText(output.classList.contains("empty")?"":output.textContent,"تم نسخ النتيجة.");
 document.getElementById("clearAll").onclick=()=>{message.value="";password.value="";setOutput("");messageCount.textContent="0 حرف";updateKeyInfo();setStatus("تم مسح البيانات من الواجهة.")};
 
-const ar=[["ض","ص","ث","ق","ف","غ","ع","ه","خ","ح","ج","د"],["ش","س","ي","ب","ل","ا","ت","ن","م","ك","ط"],["ئ","ء","ؤ","ر","ى","ة","و","ز","ظ","ذ"],["َ","ً","ُ","ٌ","ِ","ٍ","ْ","ّ","ـ"],["١","٢","٣","٤","٥","٦","٧","٨","٩","٠"],["!","@","#","$","%","^","&","*","-","_","=","+"]];
-const en=[["Q","W","E","R","T","Y","U","I","O","P"],["A","S","D","F","G","H","J","K","L"],["Z","X","C","V","B","N","M"],["1","2","3","4","5","6","7","8","9","0"],["!","@","#","$","%","^","&","*","-","_","=","+"]];
+const arLetters=[["ض","ص","ث","ق","ف","غ","ع","ه","خ","ح","ج","د"],["ش","س","ي","ب","ل","ا","ت","ن","م","ك","ط"],["ئ","ء","ؤ","ر","ى","ة","و","ز","ظ","ذ"]];
+const arSymbols=[["١","٢","٣","٤","٥","٦","٧","٨","٩","٠"],["َ","ً","ُ","ٌ","ِ","ٍ","ْ","ّ","ـ"],["!","@","#","$","%","^","&","*","-","_","=","+"]];
+const enLetters=[["Q","W","E","R","T","Y","U","I","O","P"],["A","S","D","F","G","H","J","K","L"],["Z","X","C","V","B","N","M"]];
+const enSymbols=[["1","2","3","4","5","6","7","8","9","0"],["!","@","#","$","%","^","&","*","-","_","=","+"]];
+let keyboardMode="letters";
 function insertText(t){const e=keyboardTarget,s=e.selectionStart??e.value.length,en=e.selectionEnd??e.value.length;e.value=e.value.slice(0,s)+t+e.value.slice(en);e.setSelectionRange(s+t.length,s+t.length);e.dispatchEvent(new Event("input",{bubbles:true}));e.focus()}
 function del(){const e=keyboardTarget,s=e.selectionStart??e.value.length,en=e.selectionEnd??e.value.length;if(s!==en){e.value=e.value.slice(0,s)+e.value.slice(en);e.setSelectionRange(s,s)}else if(s>0){e.value=e.value.slice(0,s-1)+e.value.slice(s);e.setSelectionRange(s-1,s)}e.dispatchEvent(new Event("input",{bubbles:true}));e.focus()}
-function renderKeyboard(){keysContainer.innerHTML="";const rows=keyboardLanguage==="ar"?ar:en;rows.forEach(row=>{const re=document.createElement("div");re.className="key-row";row.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.onpointerdown=e=>{e.preventDefault();insertText(c)};re.appendChild(b)});keysContainer.appendChild(re)});const re=document.createElement("div");re.className="key-row";const b=document.createElement("button");b.textContent="⌫";b.className="backspace";b.onpointerdown=e=>{e.preventDefault();del()};const sp=document.createElement("button");sp.textContent=keyboardLanguage==="en"?"SPACE":"مسافة";sp.className="space";sp.onpointerdown=e=>{e.preventDefault();insertText(" ")};const ent=document.createElement("button");ent.textContent="↵";ent.className="enter";ent.onpointerdown=e=>{e.preventDefault();if(keyboardTarget===message)insertText("\n")};re.append(b,sp,ent);keysContainer.appendChild(re)}
+function renderKeyboard(){keysContainer.innerHTML="";const sets=keyboardLanguage==="ar"?{letters:arLetters,symbols:arSymbols}:{letters:enLetters,symbols:enSymbols};const rows=sets[keyboardMode];rows.forEach(row=>{const re=document.createElement("div");re.className="key-row";row.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.onpointerdown=e=>{e.preventDefault();insertText(c)};re.appendChild(b)});keysContainer.appendChild(re)});const re=document.createElement("div");re.className="key-row";const b=document.createElement("button");b.textContent="⌫";b.className="backspace";b.onpointerdown=e=>{e.preventDefault();del()};const sp=document.createElement("button");sp.textContent=keyboardLanguage==="en"?"SPACE":"مسافة";sp.className="space";sp.onpointerdown=e=>{e.preventDefault();insertText(" ")};const ent=document.createElement("button");ent.textContent="↵";ent.className="enter";ent.onpointerdown=e=>{e.preventDefault();if(keyboardTarget===message)insertText("\n")};re.append(b,sp,ent);keysContainer.appendChild(re)}
 function target(e){keyboardTarget=e;document.getElementById("targetMessage").classList.toggle("active",e===message);document.getElementById("targetPassword").classList.toggle("active",e===password);e.focus()}
 document.getElementById("targetMessage").onclick=()=>target(message);document.getElementById("targetPassword").onclick=()=>target(password);
 document.getElementById("arabicMode").onclick=()=>{keyboardLanguage="ar";document.getElementById("arabicMode").classList.add("active");document.getElementById("englishMode").classList.remove("active");renderKeyboard()};
 document.getElementById("englishMode").onclick=()=>{keyboardLanguage="en";document.getElementById("englishMode").classList.add("active");document.getElementById("arabicMode").classList.remove("active");renderKeyboard()};
+const symbolsModeBtn=document.getElementById("symbolsMode");
+symbolsModeBtn.onclick=()=>{keyboardMode=keyboardMode==="letters"?"symbols":"letters";symbolsModeBtn.textContent=keyboardMode==="letters"?"١٢٣":(keyboardLanguage==="ar"?"أبج":"ABC");symbolsModeBtn.classList.toggle("active",keyboardMode==="symbols");renderKeyboard()};
 document.getElementById("keyboardLauncher").onclick=()=>keyboard.classList.toggle("open");document.getElementById("closeKeyboard").onclick=()=>keyboard.classList.remove("open");
 document.getElementById("minKeyboard").onclick=()=>{keysContainer.style.display=keysContainer.style.display==="none"?"block":"none"};
 let dragging=false,dx=0,dy=0;const kh=document.getElementById("keyboardHead");
