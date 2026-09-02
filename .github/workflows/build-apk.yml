@@ -1,4 +1,4 @@
- name: Build Mirsal APK
+name: Build Mirsal APK
 
 on:
   workflow_dispatch:
